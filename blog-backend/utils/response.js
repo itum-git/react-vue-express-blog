@@ -24,7 +24,7 @@ function success (code = 1, data = {}, msg) {
   if (typeof code === 'object' && code !== null) {
     data = code
     code = 1
-  } 
+  }
   this.json({
       code,
       data,

@@ -3,29 +3,23 @@ const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 
-const tokenPayload = {
+const defaultPayload = {
   algorithm: 'HS256',
   audience: 'tower',
   subject: '',
-  expiresIn: 15
+  expiresIn: 2*60*60
 }
-const secret = '81r6732536J85533h39827S8f19186X3553608I5H3h378877801d136737526'
 
-class JWT {
-
-  constructor (defaultPayload, secret) {
-    this.defaultPayload = defaultPayload
-    this.secret = secret
-  }
+const JWT = {
 
   sign (data, payload) {
-    const token = jwt.sign(data, this.secret, Object.assign(this.defaultPayload, payload))
+    const token = jwt.sign(data, process.env.SECRET_KEY, Object.assign(defaultPayload, payload))
     return token
-  }
+  },
 
   varify (token, payload) {
     try {
-      let result = jwt.verify(token, this.secret, Object.assign(this.defaultPayload, payload))
+      let result = jwt.verify(token, process.env.SECRET_KEY, Object.assign(defaultPayload, payload))
       return {state: 1, data: result}
     } catch (e) {
         if (e instanceof jwt.TokenExpiredError) {
@@ -38,7 +32,7 @@ class JWT {
           return e
         }
     }
-  }
+  },
 
   decode (token) {
     try {

@@ -8,96 +8,30 @@
 
 
 // 引入连接池配置
-const { createPool } = require('./dbconfig/poolextend');
+const { blogDB } = require('./dbconfig/poolextend');
 // 引入SQL模块
 const { manager } = require('./dbconfig/sqlstatement');
 
-const database = 'blogdb';
 const managerTable = {
     add: function (param) {
-        return new Promise((resolve, reject) => {
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.insert, [param.userid, param.username, param.password, param.regtime], function (err, result) {
-                    if (err) {
-                        reject(err)
-                    }
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        const values = [param.userid, param.username, param.password, param.regtime]
+        return blogDB(manager.insert, values)
     },
     delete: function (userid) {
-        return new Promise((resolve, reject) => {
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.delete, userid, function (err, result) {
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        return blogDB(manager.delete, userid)
     },
     update: function (param) {
-        return new Promise((resolve, reject) => {
-            if (param.username == null || param.password == null) {
-                const result = "undefined param";
-                resolve(result);
-            }
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.update, [param.username, param.password, param.userid], function (err, result) {
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        const values = [param.username, param.password, param.userid]
+        return blogDB(manager.update, values)
     },
     queryByName: function (user_name) {
-        return new Promise((resolve, reject) => {
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.queryByName, user_name, function (err, result) {
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        return blogDB(manager.queryByName, user_name)
     },
     queryById: function (userid) {
-        return new Promise((resolve, reject) => {
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.queryById, userid, function (err, result) {
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        return blogDB(manager.queryById, userid)
     },
     queryAll: function () {
-        return new Promise((resolve, reject) => {
-            // 引入创建连接池函数
-            const pool = createPool(database)
-            pool.getConnection(function (err, connection) {
-                connection.query(manager.queryAll, function (err, result) {
-                    resolve(result)
-                    // 释放连接
-                    connection.release();
-                });
-            });
-        })
+        return blogDB(manager.queryAll)
     }
 };
 module.exports = managerTable;

@@ -1,0 +1,7 @@
+
+/**
+ * node environment
+ */
+process.env.NODE_ENV = 'development'
+
+process.env.SECRET_KEY = '81r6732536J85533h39827S8f19186X3553608I5H3h378877801d136737526'

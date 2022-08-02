@@ -1,5 +1,4 @@
 const express = require('express')
-// const cors = require('cors')
 const path = require('path');
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
