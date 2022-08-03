@@ -1,0 +1,15 @@
+
+/**
+ * node environment: production
+ */
+process.env.NODE_ENV = 'development'
+
+process.env.SECRET_KEY = '81r6732536J85533h39827S8f19186X3553608I5H3h378877801d136737526'
+
+process.env.DATABASE_CONFIG = {
+    host: '127.0.0.1',
+    user: 'uroot',
+    password: 'password',
+    database: 'blog',
+    port: 3306
+}

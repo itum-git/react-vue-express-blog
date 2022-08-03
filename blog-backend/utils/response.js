@@ -25,6 +25,10 @@ function success (code = 1, data = {}, msg) {
     data = code
     code = 1
   }
+  if (typeof code === 'string') {
+    msg = code
+    code = 1
+  }
   this.json({
       code,
       data,

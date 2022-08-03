@@ -1,15 +1,13 @@
 
 // 引入mysql
 const mysql = require('mysql');
-// 引入mysql连接配置
-const dbconfig = require('./dbconfig');
 // 创建连接池缓存map
 const poolMap = new Map()
 
 function createPool (dbname) {
   // 使用连接池，提升性能
   if (!poolMap.has(dbname)) {
-      const pool = mysql.createPool(dbconfig[dbname])
+      const pool = mysql.createPool(process.env.DATABASE_CONFIG)
 
       pool.on('acquire', function (connection) {
           console.log('a new database connection acquired, id: %d', connection.threadId)

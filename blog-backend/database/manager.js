@@ -6,32 +6,34 @@
  * req.body通常用来解析POST请求中的数据
  */
 
-
-// 引入连接池配置
 const { blogDB } = require('./dbconfig/poolextend');
-// 引入SQL模块
-const { manager } = require('./dbconfig/sqlstatement');
 
 const managerTable = {
     add: function (param) {
+        const sql = 'INSERT INTO manager(user_id, user_name, user_pass, create_time) VALUES(?,?,?,?)'
         const values = [param.userid, param.username, param.password, param.regtime]
-        return blogDB(manager.insert, values)
+        return blogDB(sql, values)
     },
     delete: function (userid) {
-        return blogDB(manager.delete, userid)
+        const sql = 'DELETE FROM manager WHERE user_id=?'
+        return blogDB(sql, userid)
     },
     update: function (param) {
+        const sql = 'UPDATE manager SET user_name=?, user_pass=? WHERE user_id=?'
         const values = [param.username, param.password, param.userid]
-        return blogDB(manager.update, values)
+        return blogDB(sql, values)
     },
     queryByName: function (user_name) {
-        return blogDB(manager.queryByName, user_name)
+        const sql = 'SELECT * FROM manager WHERE user_name=?'
+        return blogDB(sql, user_name)
     },
     queryById: function (userid) {
-        return blogDB(manager.queryById, userid)
+        const sql = 'SELECT user_id, user_name, create_time FROM manager WHERE user_id=?'
+        return blogDB(sql, userid)
     },
     queryAll: function () {
-        return blogDB(manager.queryAll)
+        const sql = 'SELECT user_id, user_name, create_time FROM manager'
+        return blogDB(sql)
     }
 };
 module.exports = managerTable;

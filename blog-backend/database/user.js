@@ -6,30 +6,34 @@
  * req.body通常用来解析POST请求中的数据
  */
 
-
 const { blogDB } = require('./dbconfig/poolextend');
-const { user } = require('./dbconfig/sqlstatement');
 
-const userData = {
+const userTable = {
     add: function (param) {
+        const sql = 'INSERT INTO user(userid, username, password) VALUES(?,?,?)'
         const values = [param.userid, param.username, param.password]
-        return blogDB(user.insert, values)
+        return blogDB(sql, values)
     },
     delete: function (userid) {
-        return blogDB(user.delete, userid)
+        const sql = 'DELETE FROM user WHERE userid=?'
+        return blogDB(sql, userid)
     },
     update: function (param) {
+        const sql = 'UPDATE user SET username=?, password=? WHERE userid=?'
         const values = [param.username, param.password, param.userid]
-        return blogDB(user.update, values)
+        return blogDB(sql, values)
     },
     queryByName: function (username) {
-        return blogDB(user.queryByName, username)
+        const sql = 'SELECT * FROM user WHERE username=?'
+        return blogDB(sql, username)
     },
     queryById: function (userid) {
-        return blogDB(user.queryById, userid)
+        const sql = 'SELECT * FROM user WHERE userid=?'
+        return blogDB(sql, userid)
     },
     queryAll: function () {
-        return blogDB(user.queryAll)
+        const sql = 'SELECT * FROM user'
+        return blogDB(sql)
     }
 };
-module.exports = userData;
+module.exports = userTable;

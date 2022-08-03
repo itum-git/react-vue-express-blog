@@ -7,7 +7,7 @@ const JWT = require('../utils/token')
 router.use(function (req, res, next) {
     const token = req.headers['authorization']
     if (typeof token === 'string') {
-        const isValidToken = JWT.varifyToken(token)
+        const isValidToken = JWT.varify(token)
         if (isValidToken.state === 0) {
             req.user = isValidToken.data
             next()

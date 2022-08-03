@@ -3,7 +3,7 @@ const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 
-const defaultPayload = {
+const defaultOptions = {
   algorithm: 'HS256',
   audience: 'tower',
   subject: '',
@@ -12,15 +12,15 @@ const defaultPayload = {
 
 const JWT = {
 
-  sign (data, payload) {
-    const token = jwt.sign(data, process.env.SECRET_KEY, Object.assign(defaultPayload, payload))
+  sign (data, options) {
+    const token = jwt.sign(data, process.env.SECRET_KEY, Object.assign(defaultOptions, options))
     return token
   },
 
-  varify (token, payload) {
+  varify (token, options) {
     try {
-      let result = jwt.verify(token, process.env.SECRET_KEY, Object.assign(defaultPayload, payload))
-      return {state: 1, data: result}
+      let data = jwt.verify(token, process.env.SECRET_KEY, Object.assign(defaultOptions, options))
+      return {state: 1, data: data}
     } catch (e) {
         if (e instanceof jwt.TokenExpiredError) {
           return {state: 0}
@@ -36,8 +36,8 @@ const JWT = {
 
   decode (token) {
     try {
-      let result = jwt.decode(token)
-      return {state: 1, data: result}
+      let data = jwt.decode(token)
+      return {state: 1, data: data}
     } catch (e) {
       return e
     }
