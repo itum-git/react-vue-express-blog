@@ -1,9 +1,9 @@
 
 const express = require('express')
 const router = express.Router()
-const { login, register, getUserInfo, getAdmins } = require('./controller/user')
-const { addNewBlog, getAllBlog } = require('./controller/blog')
-const JWT = require('../utils/token')
+const { login, register, getUserInfo, getAdmins } = require('../../controller/user')
+const { addNewBlog, getAllBlog } = require('../../controller/blog')
+const JWT = require('../../utils/token')
 
 router.use(function (req, res, next) {
     if (req.path === '/login') {

@@ -29,7 +29,6 @@ exports.login = async (req, res, next) => {
             res.$fail(4)
         }
     } catch (err) {
-        // 跳转到错误处理中间件
         next(err)
     }
 }
@@ -54,7 +53,6 @@ exports.register = async (req, res, next) => {
             res.$success('注册成功')
         }
     } catch (err) {
-        // 跳转到错误处理中间件
         next(err)
     }
 }
@@ -85,6 +83,23 @@ exports.refreshToken = async (req, res, next) => {
             res.$fail(2)
         }
         next()
+    } catch (err) {
+        next(err)
+    }
+}
+
+// 注册
+exports.deleteUser = async (req, res, next) => {
+    try {
+        const params = req.body;
+        if (!params.user_id) {
+            res.$fail(3)
+            return
+        }
+        const result = await userTable.delete(params.user_id)
+        if (result) {
+            res.$success('删除成功')
+        }
     } catch (err) {
         next(err)
     }

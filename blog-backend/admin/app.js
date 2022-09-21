@@ -1,7 +1,7 @@
 
 const express = require('express')
 const cookieParser = require('cookie-parser')
-const adminRouter = require('./router')
+const adminRouter = require('./router/router')
 const packResponse = require('./utils/response')
 const admin = express()
 
@@ -10,7 +10,7 @@ admin.use(express.json())
 // 解析表单请求体 application/x-www-form-urlencoded
 admin.use(express.urlencoded({ extended: false }))
 
-admin.use(cookieParser());
+admin.use(cookieParser())
 // 给response封装两个方法 $success() 和 $fail()
 admin.use(packResponse)
 
@@ -21,13 +21,17 @@ admin.use('/api', adminRouter)
 admin.use(function (req, res, next) {
     console.log("admin last middleware")
 })
-// 错误处理
+
 admin.use(function (err, req, res, next) {
     console.log("error in admin")
     // render the error page
-    res.status(err.status || 500);
+    res.status(err.status || 500)
     // res.render('index');
     res.$fail(0, err)
-});
+})
+
+admin.listen(4000, () => {
+    console.log('admin server running at http://localhost:4000')
+})
 
 module.exports = admin

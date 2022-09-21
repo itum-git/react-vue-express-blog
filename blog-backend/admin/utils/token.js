@@ -8,18 +8,18 @@ const tokenPayload = {
   subject: '',
   expiresIn: 15
 }
-const secret = '81r6732536J85533h39827S8f19186X3553608I5H3h378877801d136737526'
 
 const JWT = {
-  generateToken (data, payload) {
-    const token = jwt.sign(data, secret, Object.assign(tokenPayload, payload))
+  
+  sign (data, options) {
+    const token = jwt.sign(data, process.env.ADMIN_SECRET_KEY, Object.assign(defaultOptions, options))
     return token
   },
 
-  varifyToken (token, payload) {
+  varify (token, options) {
     try {
-      let result = jwt.verify(token, secret, Object.assign(tokenPayload, payload))
-      return {state: 1, data: result}
+      let data = jwt.verify(token, process.env.ADMIN_SECRET_KEY, Object.assign(defaultOptions, options))
+      return {state: 1, data: data}
     } catch (e) {
         if (e instanceof jwt.TokenExpiredError) {
           return {state: 0}
@@ -33,10 +33,10 @@ const JWT = {
     }
   },
 
-  decodeToken (token) {
+  decode (token) {
     try {
-      let result = jwt.decode(token)
-      return {state: 1, data: result}
+      let data = jwt.decode(token)
+      return {state: 1, data: data}
     } catch (e) {
       return e
     }

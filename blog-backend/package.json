@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "node ./env/development && node app.js",
-    "start:pro": "node ./env/production && node app.js"
+    "start:pro": "node ./env/production && node app.js",
+    "start:admin:dev": "node ./env/development && node ./admin/app.js",
+    "start:admin:pro": "node ./env/production && node ./admin/app.js"
   },
   "keywords": [
     "express"

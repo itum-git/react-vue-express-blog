@@ -29,18 +29,19 @@ function createPool (dbname) {
 
 function blogDB(sqlstatement, values) {
   return new Promise((resolve, reject) => {
-    const pool = createPool('blogdb')
-    pool.getConnection(function (err, connection) {
-      connection.query(sqlstatement, values, function (err, result) {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
-        // 释放连接
-        connection.release();
-      });
-    });
+    resolve({})
+    // const pool = createPool('blogdb')
+    // pool.getConnection(function (err, connection) {
+    //   connection.query(sqlstatement, values, function (err, result) {
+    //     if (err) {
+    //       reject(err)
+    //     } else {
+    //       resolve(result)
+    //     }
+    //     // 释放连接
+    //     connection.release();
+    //   });
+    // });
   })
 }
 

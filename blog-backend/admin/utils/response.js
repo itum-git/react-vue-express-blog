@@ -1,7 +1,7 @@
 
 const codeMap = {
-  "0": "请求失败",
-  "1": "请求成功",
+  "0": "请求成功",
+  "1": "请求失败",
   "2": "token无效",
   "3": "缺少参数",
   "4": "用户不存在",
@@ -17,12 +17,12 @@ const codeMap = {
 * @param {object} data 响应数据 
 * @param {string} msg 附加信息
 */
-function success(code = 1, data = null, msg = '') {
+function success(code = 0, data = null, msg = '') {
   if (this.$responsed) { return }
   this.$responsed = true
   if (typeof code !== 'number') {
     data = code
-    code = 1
+    code = 0
   }
     this.json({
       code,
@@ -36,7 +36,7 @@ function success(code = 1, data = null, msg = '') {
 * @param {number} code 内部响应状态码 
 * @param {string} msg 附加信息
 */
-function fail(code = 0, msg) {
+function fail(code = 1, msg) {
   if (this.$responsed) { return }
   this.$responsed = true
   if (msg instanceof Error) {

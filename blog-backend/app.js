@@ -2,14 +2,11 @@ const express = require('express')
 const path = require('path');
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
-const admin = require('./admin/index')
 const indexRouter = require('./router/index')
 const { expressLogger, expressErrorLogger } = require('./logger/winston')
 
 // 主APP
 const app = express()
-// 管理后台
-app.use('/admin', admin)
 
 // 成功日志生成器
 app.use(expressLogger)
@@ -33,7 +30,7 @@ app.all('*', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization');
     res.setHeader("Content-Type", "application/json;charset=utf-8");
-    next();
+    next()
 })
 
 // 注册路由
@@ -42,7 +39,7 @@ app.use('/', indexRouter)
 // 404中间件
 app.use('*', function (req, res, next) {
     next(createError(404));
-});
+})
 
 // 错误日志生成器
 app.use(expressErrorLogger)
@@ -55,10 +52,10 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     // res.render('index');
     res.json(err)
-});
+})
 
 app.listen(3000, () => {
-    console.log('server running at http://localhost:3000')
+    console.log('reader server running at http://localhost:3000')
 })
 
 module.exports = app;

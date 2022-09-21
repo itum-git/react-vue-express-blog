@@ -23,7 +23,6 @@ exports.login = async (req, res, next) => {
         }
         next()
     } catch (err) {
-        // 跳转到错误处理中间件
         next(err)
     }
 }
@@ -50,7 +49,6 @@ exports.register = async (req, res, next) => {
         res.$success(1, '注册成功！')
         next()
     } catch (err) {
-        // 跳转到错误处理中间件
         next(err)
     }
 }
