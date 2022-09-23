@@ -3,7 +3,7 @@ const router = express.Router()
 const path = require('path');
 const packResponse = require('../utils/response')
 const api = require('./api')
-const blog = require('./blog/blog')
+const blog = require('./article/article')
 const user = require('./user/user')
 
 // 给response封装两个方法 $success() 和 $fail()
