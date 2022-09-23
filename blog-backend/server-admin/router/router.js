@@ -1,9 +1,9 @@
 
 const express = require('express')
 const router = express.Router()
-const { login, register, getUserInfo, getAdmins } = require('../../controller/user')
-const { addNewBlog, getAllBlog } = require('../../controller/blog')
-const JWT = require('../../utils/token')
+const { login, register, getUserInfo, getAdmins } = require('../controller/user')
+const { addNewArticle, getAllArticle } = require('../controller/article')
+const JWT = require('../utils/token')
 
 router.use(function (req, res, next) {
     if (req.path === '/login') {
@@ -36,8 +36,8 @@ router.get('/user/info', getUserInfo)
 // 获取所有管理员
 router.post('/adminlist', getAdmins)
 // 添加博客文章
-router.post('/blog/add', addNewBlog)
+router.post('/blog/add', addNewArticle)
 // 获取所有文章
-router.post('/blog/getall', getAllBlog)
+router.post('/blog/getall', getAllArticle)
 
 module.exports = router

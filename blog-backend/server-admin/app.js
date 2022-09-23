@@ -1,9 +1,12 @@
 
 const express = require('express')
 const cookieParser = require('cookie-parser')
+const path = require('path')
 const adminRouter = require('./router/router')
 const packResponse = require('./utils/response')
 const admin = express()
+
+admin.use(express.static(path.join(__dirname, 'public')));
 
 // 解析表单请求体 application/json
 admin.use(express.json())

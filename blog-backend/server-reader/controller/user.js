@@ -1,5 +1,5 @@
-const userTable = require('../database/user')
-const { uniqIdFromTime } = require('../utils/uuid')
+const userTable = require('../../database/user')
+const { uniqIdFromTime } = require('../../common/utils/uuid')
 const JWT = require('../utils/token')
 
 const $refreshTokenExpiresTime = 24 * 60 * 60

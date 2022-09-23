@@ -1,5 +1,5 @@
 const managerTable = require('../../database/manager')
-const { uniqIdFromTime } = require('../utils/uuid')
+const { uniqIdFromTime } = require('../../common/utils/uuid')
 const JWT = require('../utils/token')
 
 const $refreshTokenExpiresTime = 24*60*60
@@ -21,7 +21,6 @@ exports.login = async (req, res, next) => {
             const refreshToken = JWT.generateToken({ user_id: result[0].user_id }, {expiresIn: $refreshTokenExpiresTime})
             res.$success(1, { user_id: result[0].user_id, user_name: param.user_name, token, re_oken: refreshToken })
         }
-        next()
     } catch (err) {
         next(err)
     }
@@ -47,7 +46,6 @@ exports.register = async (req, res, next) => {
         const result = await new managerTable.add(param)
         // console.log(result);
         res.$success(1, '注册成功！')
-        next()
     } catch (err) {
         next(err)
     }
@@ -72,7 +70,6 @@ exports.getAdmins = async (req, res, next) => {
     try {
         const admins = await managerTable.queryAll()
         res.$success(1, admins)
-        next()
     } catch (err) {
         next(err)
     }
@@ -83,7 +80,6 @@ exports.refreshToken = async (req, res, next) => {
         const refreshToken = req.body.re_token
         if (typeof refreshToken === 'string') {
             const isValidToken = JWT.varifyToken(refreshToken, {expiresIn: $refreshTokenExpiresTime})
-            console.log("refresh token data", isValidToken)
             if (isValidToken.state === 0) {
                 res.$fail(7, 'token已过期，请重新登录！')
             } else if (isValidToken.state === 1) {

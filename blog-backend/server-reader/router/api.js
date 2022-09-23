@@ -1,4 +1,4 @@
-const blogAuth = require('./blog/blog-auth')
+const articleAuth = require('./article/article-auth')
 const userAuth = require('./user/user-auth')
 const express = require('express')
 const router = express.Router()
@@ -21,7 +21,7 @@ router.use(function (req, res, next) {
     }
 })
 
-router.use('/blog', blogAuth)
+router.use('/article', articleAuth)
 router.use('/user', userAuth)
 
 module.exports = router
