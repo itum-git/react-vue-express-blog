@@ -16,8 +16,8 @@ router.get('/', function (req, res, next) {
       console.log(err);
       next(err)
     }
-  });
-});
+  })
+})
 
 /** 对api接口类型做登录验证 */
 router.use('/api', api)
