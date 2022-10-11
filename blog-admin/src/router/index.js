@@ -1,0 +1,174 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { Layout } from '@/components/Layout'
+
+export const constantRouterMap = [
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard/analysis',
+    name: 'Root',
+    meta: {
+      hidden: true
+    }
+  },
+  {
+    path: '/redirect',
+    component: Layout,
+    name: 'Redirect',
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        name: 'Redirect',
+        component: () => import('@/views/Redirect/Redirect.vue'),
+        meta: {}
+      }
+    ],
+    meta: {
+      hidden: true,
+      noTagsView: true
+    }
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/Login/Login.vue'),
+    name: 'Login',
+    meta: {
+      hidden: true,
+      title: t('router.login'),
+      noTagsView: true
+    }
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/Error/404.vue'),
+    name: 'NoFind',
+    meta: {
+      hidden: true,
+      title: '404',
+      noTagsView: true
+    }
+  }
+]
+
+export const asyncRouterMap = [
+  {
+    path: '/dashboard',
+    component: Layout,
+    redirect: '/dashboard/analysis',
+    name: 'Dashboard',
+    meta: {
+      title: 'router.dashboard',
+      icon: 'ant-design:dashboard-filled',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'analysis',
+        component: () => import('@/views/Dashboard/Analysis.vue'),
+        name: 'Analysis',
+        meta: {
+          title: 'router.analysis',
+          noCache: true,
+          affix: true
+        }
+      },
+      {
+        path: 'workplace',
+        component: () => import('@/views/Dashboard/Workplace.vue'),
+        name: 'Workplace',
+        meta: {
+          title: 'router.workplace',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/example-dialog',
+    name: 'Example',
+    meta: {
+      title: t('router.example'),
+      icon: 'ep:management',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'example-dialog',
+        component: () => import('@/views/Example/Dialog/ExampleDialog.vue'),
+        name: 'ExampleDialog',
+        meta: {
+          title: t('router.exampleDialog')
+        }
+      },
+      {
+        path: 'example-page',
+        component: () => import('@/views/Example/Page/ExamplePage.vue'),
+        name: 'ExamplePage',
+        meta: {
+          title: t('router.examplePage')
+        }
+      },
+      {
+        path: 'example-add',
+        component: () => import('@/views/Example/Page/ExampleAdd.vue'),
+        name: 'ExampleAdd',
+        meta: {
+          title: t('router.exampleAdd'),
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          canTo: true,
+          activeMenu: '/example/example-page'
+        }
+      },
+      {
+        path: 'example-edit',
+        component: () => import('@/views/Example/Page/ExampleEdit.vue'),
+        name: 'ExampleEdit',
+        meta: {
+          title: t('router.exampleEdit'),
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          canTo: true,
+          activeMenu: '/example/example-page'
+        }
+      },
+      {
+        path: 'example-detail',
+        component: () => import('@/views/Example/Page/ExampleDetail.vue'),
+        name: 'ExampleDetail',
+        meta: {
+          title: t('router.exampleDetail'),
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          canTo: true,
+          activeMenu: '/example/example-page'
+        }
+      }
+    ]
+  }
+]
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  strict: true,
+  routes: constantRouterMap,
+  scrollBehavior: () => ({ left: 0, top: 0 })
+})
+
+export const resetRouter = () => {
+  const resetWhiteNameList = ['Redirect', 'Login', 'NoFind', 'Root']
+  router.getRoutes().forEach((route) => {
+    const { name } = route
+    if (name && !resetWhiteNameList.includes(name)) {
+      router.hasRoute(name) && router.removeRoute(name)
+    }
+  })
+}
+
+
+export default router
