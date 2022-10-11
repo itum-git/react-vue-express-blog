@@ -1,13 +1,13 @@
 const express = require('express')
-const { login, register, refreshToken } = require('../../controller/user')
+const { signin, signup, refreshToken } = require('../../controller/user')
 
 const router = express.Router()
 
 // 用户登录
-router.post('/login', login)
+router.post('/signin', signin)
 
 // 用户注册
-router.post('/register', register)
+router.post('/signup', signup)
 
 // 用户刷新token
 router.post('/refresh', refreshToken)

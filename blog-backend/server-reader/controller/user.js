@@ -5,7 +5,7 @@ const JWT = require('../utils/token')
 const $refreshTokenExpiresTime = 24 * 60 * 60
 
 // 用户登录
-exports.login = async (req, res, next) => {
+exports.signin = async (req, res, next) => {
     try {
         const param = req.body
         if (!param.username || !param.password) {
@@ -34,7 +34,7 @@ exports.login = async (req, res, next) => {
 }
 
 // 注册
-exports.register = async (req, res, next) => {
+exports.signup = async (req, res, next) => {
     try {
         const params = req.body;
         if (!params.username || !params.password) {
