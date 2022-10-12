@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="js">
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useAppStore } from '@/store/modules/app'
 import { Footer } from '@/components/Footer'
@@ -14,7 +14,7 @@ const footer = computed(() => appStore.getFooter)
 
 const tagsViewStore = useTagsViewStore()
 
-const getCaches = computed((): string[] => {
+const getCaches = computed(() => {
   return tagsViewStore.getCachedViews
 })
 </script>

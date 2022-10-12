@@ -12,5 +12,8 @@ module.exports = defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
+    new PurgeIcons({
+      /* PurgeIcons Options */
+    })
   ],
 })

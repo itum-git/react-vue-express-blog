@@ -1,5 +1,5 @@
-<script lang="tsx">
-import { computed, defineComponent, unref, PropType } from 'vue'
+<script lang="jsx">
+import { computed, defineComponent, unref } from 'vue'
 import { ElMenu, ElScrollbar } from 'element-plus'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -7,7 +7,6 @@ import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
-import { LayoutType } from '@/types/layout'
 
 const { getPrefixCls } = useDesign()
 
@@ -17,7 +16,7 @@ export default defineComponent({
   name: 'Menu',
   props: {
     menuSelect: {
-      type: Function as PropType<(index: string) => void>,
+      type: Function,
       default: undefined
     }
   },
@@ -30,9 +29,9 @@ export default defineComponent({
 
     const permissionStore = usePermissionStore()
 
-    const menuMode = computed((): 'vertical' | 'horizontal' => {
+    const menuMode = computed(() => {
       // 竖
-      const vertical: LayoutType[] = ['classic', 'topLeft', 'cutMenu']
+      const vertical = ['classic', 'topLeft', 'cutMenu']
 
       if (vertical.includes(unref(layout))) {
         return 'vertical'
@@ -53,12 +52,12 @@ export default defineComponent({
       const { meta, path } = unref(currentRoute)
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
-        return meta.activeMenu as string
+        return meta.activeMenu
       }
       return path
     })
 
-    const menuSelect = (index: string) => {
+    const menuSelect = (index) => {
       if (props.menuSelect) {
         props.menuSelect(index)
       }

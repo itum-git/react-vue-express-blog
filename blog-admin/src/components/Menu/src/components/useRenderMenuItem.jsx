@@ -1,5 +1,4 @@
 import { ElSubMenu, ElMenuItem } from 'element-plus'
-import type { RouteMeta } from 'vue-router'
 import { hasOneShowingChild } from '../helper'
 import { isUrl } from '@/utils/is'
 import { useRenderMenuTitle } from './useRenderMenuTitle'
@@ -8,11 +7,11 @@ import { pathResolve } from '@/utils/routerHelper'
 
 export const useRenderMenuItem = (
   // allRouters: AppRouteRecordRaw[] = [],
-  menuMode: 'vertical' | 'horizontal'
+  menuMode //'vertical' | 'horizontal'
 ) => {
-  const renderMenuItem = (routers: AppRouteRecordRaw[], parentPath = '/') => {
+  const renderMenuItem = (routers, parentPath = '/') => {
     return routers.map((v) => {
-      const meta = (v.meta ?? {}) as RouteMeta
+      const meta = (v.meta ?? {})
       if (!meta.hidden) {
         const { oneShowingChild, onlyOneChild } = hasOneShowingChild(v.children, v)
         const fullPath = isUrl(v.path) ? v.path : pathResolve(parentPath, v.path) // getAllParentPath<AppRouteRecordRaw>(allRouters, v.path).join('/')
@@ -44,7 +43,7 @@ export const useRenderMenuItem = (
             >
               {{
                 title: () => renderMenuTitle(meta),
-                default: () => renderMenuItem(v.children!, fullPath)
+                default: () => renderMenuItem(v.children, fullPath)
               }}
             </ElSubMenu>
           )
