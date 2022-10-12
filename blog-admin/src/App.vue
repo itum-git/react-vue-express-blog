@@ -1,26 +1,63 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup lang="js">
+import { computed } from 'vue'
+import { useAppStore } from '@/store/modules/app'
+import { ConfigGlobal } from '@/components/ConfigGlobal'
+import { isDark } from '@/utils/is'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useCache } from '@/hooks/web/useCache'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const { getPrefixCls } = useDesign()
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+const prefixCls = getPrefixCls('app')
+
+const appStore = useAppStore()
+
+const currentSize = computed(() => appStore.getCurrentSize)
+
+const greyMode = computed(() => appStore.getGreyMode)
+
+const { wsCache } = useCache()
+
+// 根据浏览器当前主题设置系统主题色
+const setDefaultTheme = () => {
+  if (wsCache.get('isDark')) {
+    appStore.setIsDark(wsCache.get('isDark'))
+    return
   }
+  const isDarkTheme = isDark()
+  appStore.setIsDark(isDarkTheme)
 }
+
+setDefaultTheme()
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<template>
+  <ConfigGlobal :size="currentSize">
+    <RouterView :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
+  </ConfigGlobal>
+</template>
+
+<style lang="less">
+@prefix-cls: ~'@{namespace}-app';
+
+.size {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  padding: 0 !important;
+  margin: 0;
+  overflow: hidden;
+  .size;
+
+  #app {
+    .size;
+  }
+}
+
+.@{prefix-cls}-grey-mode {
+  filter: grayscale(100%);
 }
 </style>
