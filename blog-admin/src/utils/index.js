@@ -31,7 +31,7 @@ export const humpToUnderline = (str) => {
  */
 export const underlineToHump = (str) => {
   if (!str) return ''
-  return str.replace(/\-(\w)/g, (_, letter) => {
+  return str.replace(/-(\w)/g, (_, letter) => {
     return letter.toUpperCase()
   })
 }

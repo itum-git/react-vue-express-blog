@@ -34,7 +34,7 @@ export const constantRouterMap = [
     name: 'Login',
     meta: {
       hidden: true,
-      title: t('router.login'),
+      title: 'router.login',
       noTagsView: true
     }
   },
@@ -89,7 +89,7 @@ export const asyncRouterMap = [
     redirect: '/example/example-dialog',
     name: 'Example',
     meta: {
-      title: t('router.example'),
+      title: 'router.example',
       icon: 'ep:management',
       alwaysShow: true
     },
@@ -99,7 +99,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Example/Dialog/ExampleDialog.vue'),
         name: 'ExampleDialog',
         meta: {
-          title: t('router.exampleDialog')
+          title: 'router.exampleDialog'
         }
       },
       {
@@ -107,7 +107,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Example/Page/ExamplePage.vue'),
         name: 'ExamplePage',
         meta: {
-          title: t('router.examplePage')
+          title: 'router.examplePage'
         }
       },
       {
@@ -115,7 +115,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Example/Page/ExampleAdd.vue'),
         name: 'ExampleAdd',
         meta: {
-          title: t('router.exampleAdd'),
+          title: 'router.exampleAdd',
           noTagsView: true,
           noCache: true,
           hidden: true,
@@ -128,7 +128,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Example/Page/ExampleEdit.vue'),
         name: 'ExampleEdit',
         meta: {
-          title: t('router.exampleEdit'),
+          title: 'router.exampleEdit',
           noTagsView: true,
           noCache: true,
           hidden: true,
@@ -141,7 +141,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Example/Page/ExampleDetail.vue'),
         name: 'ExampleDetail',
         meta: {
-          title: t('router.exampleDetail'),
+          title: 'router.exampleDetail',
           noTagsView: true,
           noCache: true,
           hidden: true,
