@@ -8,7 +8,6 @@ import { useCache } from '@/hooks/web/useCache'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
-import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
 
 const { required } = useValidator()

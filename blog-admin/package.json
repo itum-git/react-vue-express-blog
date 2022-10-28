@@ -16,7 +16,8 @@
     "vue": "^3.2.13",
     "vue-router": "^4.1.5",
     "vue-types": "^4.2.1",
-    "web-storage-cache": "^1.1.1"
+    "web-storage-cache": "^1.1.1",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
