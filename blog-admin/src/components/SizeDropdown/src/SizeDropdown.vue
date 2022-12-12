@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { computed } from 'vue'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { useAppStore } from '@/store/modules/app'

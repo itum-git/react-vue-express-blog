@@ -31,7 +31,7 @@ export const usePermissionStore = defineStore('permission', {
       type,
       routers
     ) {
-      return new ((resolve) => {
+      return new Promise((resolve) => {
         let routerMap = []
         if (type === 'admin') {
           // 模拟后端过滤菜单

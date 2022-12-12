@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { ref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ElSwitch } from 'element-plus'

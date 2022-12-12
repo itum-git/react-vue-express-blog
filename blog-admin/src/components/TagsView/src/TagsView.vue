@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { onMounted, watch, computed, unref, ref, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -466,7 +466,7 @@ watch(
 @prefix-cls: ~'@{namespace}-tags-view';
 
 .@{prefix-cls} {
-  :deep(.@{elNamespace}-scrollbar__view) {
+  :deep(.el-scrollbar__view) {
     height: 100%;
   }
 

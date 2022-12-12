@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import echarts from '@/plugins/echarts'
 import { debounce } from 'lodash-es'
 import 'echarts-wordcloud'

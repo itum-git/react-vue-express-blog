@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { ElRow, ElCol, ElCard, ElSkeleton } from 'element-plus'
 import { CountTo } from '@/components/CountTo'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -172,7 +172,7 @@ getCount()
     }
 
     &:hover {
-      :deep(.@{namespace}-icon) {
+      :deep(.v-icon) {
         color: #fff !important;
       }
       .@{prefix-cls}__item--icon {

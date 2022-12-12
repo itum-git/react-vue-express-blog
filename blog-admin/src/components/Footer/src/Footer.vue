@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { useAppStore } from '@/store/modules/app'
 import { computed } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'

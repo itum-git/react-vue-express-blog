@@ -1,5 +1,7 @@
 import { i18n } from '@/plugins/vueI18n'
 
+// const i18n = undefined
+
 const getKey = (namespace, key) => {
   if (!namespace) {
     return key

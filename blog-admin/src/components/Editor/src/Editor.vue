@@ -1,7 +1,5 @@
-<script setup lang="js">
-import { onBeforeUnmount, computed, PropType, unref, nextTick, ref, watch, shallowRef } from 'vue'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
+<script setup>
+import { onBeforeUnmount, computed, unref, nextTick, ref, watch, shallowRef } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { isNumber } from '@/utils/is'
 import { ElMessage } from 'element-plus'
@@ -111,13 +109,13 @@ defineExpose({
 <template>
   <div class="border-1 border-solid border-[var(--tags-view-border-color)] z-3000">
     <!-- 工具栏 -->
-    <Toolbar
+    <div
       :editor="editorRef"
       :editorId="editorId"
       class="border-bottom-1 border-solid border-[var(--tags-view-border-color)]"
-    />
+    ></div>
     <!-- 编辑器 -->
-    <Editor
+    <input
       v-model="valueHtml"
       :editorId="editorId"
       :defaultConfig="editorConfig"
@@ -128,4 +126,4 @@ defineExpose({
   </div>
 </template>
 
-<style src="@wangeditor/editor/dist/css/style.css"></style>
+<!-- <style src="@wangeditor/editor/dist/css/style.css"></style> -->

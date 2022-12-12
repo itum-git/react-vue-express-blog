@@ -6,14 +6,14 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { filterBreadcrumb } from './helper'
 import { filter, treeToList } from '@/utils/tree'
 import { Icon } from '@/components/Icon'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStoreWithOut } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
 
 const { getPrefixCls } = useDesign()
 
 const prefixCls = getPrefixCls('breadcrumb')
 
-const appStore = useAppStore()
+const appStore = useAppStoreWithOut()
 
 // 面包屑图标
 const breadcrumbIcon = computed(() => appStore.getBreadcrumbIcon)

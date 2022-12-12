@@ -289,7 +289,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.@{elNamespace}-form.@{namespace}-form .@{elNamespace}-row {
+.@{elNamespace}-form.v-form .@{elNamespace}-row {
   margin-right: 0 !important;
   margin-left: 0 !important;
 }

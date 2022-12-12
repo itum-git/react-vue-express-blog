@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import PanelGroup from './components/PanelGroup.vue'
 import { ElRow, ElCol, ElCard, ElSkeleton } from 'element-plus'
 import { Echart } from '@/components/Echart'

@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { Form } from '@/components/Form'
 import { reactive, ref, unref } from 'vue'
 import { useForm } from '@/hooks/web/useForm'

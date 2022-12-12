@@ -72,6 +72,7 @@ export const useAppStore = defineStore('app', {
       return this.breadcrumb
     },
     getBreadcrumbIcon() {
+      console.log('use app store')
       return this.breadcrumbIcon
     },
     getCollapse() {

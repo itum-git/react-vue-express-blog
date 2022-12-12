@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { Icon } from '@/components/Icon'
 import { useFullscreen } from '@vueuse/core'
 import { propTypes } from '@/utils/propTypes'

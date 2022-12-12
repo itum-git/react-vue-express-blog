@@ -1,9 +1,9 @@
-<script setup lang="js">
+<script setup>
 import { ref, unref, computed, watch } from 'vue'
 import { ElInput } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
-import { zxcvbn } from '@zxcvbn-ts/core'
+import { zxcvbn } from 'zxcvbn'
 import { useDesign } from '@/hooks/web/useDesign'
 
 const { getPrefixCls } = useDesign()
@@ -18,7 +18,7 @@ const props = defineProps({
 
 watch(
   () => props.modelValue,
-  (val: string) => {
+  (val) => {
     if (val === unref(valueRef)) return
     valueRef.value = val
   }
@@ -41,7 +41,7 @@ const valueRef = ref(props.modelValue)
 // 监听
 watch(
   () => valueRef.value,
-  (val: string) => {
+  (val) => {
     emit('update:modelValue', val)
   }
 )
@@ -49,7 +49,7 @@ watch(
 // 获取密码强度
 const getPasswordStrength = computed(() => {
   const value = unref(valueRef)
-  const zxcvbnRef = zxcvbn(unref(valueRef)) as ZxcvbnResult
+  const zxcvbnRef = zxcvbn(unref(valueRef))
   return value ? zxcvbnRef.score : -1
 })
 

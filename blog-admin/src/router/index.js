@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { Layout } from '@/components/Layout'
+import Layout from '@/layout/Layout.vue'
 
 export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard/analysis',
+    redirect: '/dashboard',
     name: 'Root',
     meta: {
       hidden: true
@@ -41,7 +41,7 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import('@/views/Error/404.vue'),
-    name: 'NoFind',
+    name: 'NoFound',
     meta: {
       hidden: true,
       title: '404',
@@ -63,7 +63,7 @@ export const asyncRouterMap = [
     },
     children: [
       {
-        path: 'analysis',
+        path: '/analysis',
         component: () => import('@/views/Dashboard/Analysis.vue'),
         name: 'Analysis',
         meta: {
@@ -83,74 +83,74 @@ export const asyncRouterMap = [
       }
     ]
   },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/example-dialog',
-    name: 'Example',
-    meta: {
-      title: 'router.example',
-      icon: 'ep:management',
-      alwaysShow: true
-    },
-    children: [
-      {
-        path: 'example-dialog',
-        component: () => import('@/views/Example/Dialog/ExampleDialog.vue'),
-        name: 'ExampleDialog',
-        meta: {
-          title: 'router.exampleDialog'
-        }
-      },
-      {
-        path: 'example-page',
-        component: () => import('@/views/Example/Page/ExamplePage.vue'),
-        name: 'ExamplePage',
-        meta: {
-          title: 'router.examplePage'
-        }
-      },
-      {
-        path: 'example-add',
-        component: () => import('@/views/Example/Page/ExampleAdd.vue'),
-        name: 'ExampleAdd',
-        meta: {
-          title: 'router.exampleAdd',
-          noTagsView: true,
-          noCache: true,
-          hidden: true,
-          canTo: true,
-          activeMenu: '/example/example-page'
-        }
-      },
-      {
-        path: 'example-edit',
-        component: () => import('@/views/Example/Page/ExampleEdit.vue'),
-        name: 'ExampleEdit',
-        meta: {
-          title: 'router.exampleEdit',
-          noTagsView: true,
-          noCache: true,
-          hidden: true,
-          canTo: true,
-          activeMenu: '/example/example-page'
-        }
-      },
-      {
-        path: 'example-detail',
-        component: () => import('@/views/Example/Page/ExampleDetail.vue'),
-        name: 'ExampleDetail',
-        meta: {
-          title: 'router.exampleDetail',
-          noTagsView: true,
-          noCache: true,
-          hidden: true,
-          canTo: true,
-          activeMenu: '/example/example-page'
-        }
-      }
-    ]
-  }
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/example-dialog',
+  //   name: 'Example',
+  //   meta: {
+  //     title: 'router.example',
+  //     icon: 'ep:management',
+  //     alwaysShow: true
+  //   },
+  //   children: [
+  //     {
+  //       path: 'example-dialog',
+  //       component: () => import('@/views/Example/Dialog/ExampleDialog.vue'),
+  //       name: 'ExampleDialog',
+  //       meta: {
+  //         title: 'router.exampleDialog'
+  //       }
+  //     },
+  //     {
+  //       path: 'example-page',
+  //       component: () => import('@/views/Example/Page/ExamplePage.vue'),
+  //       name: 'ExamplePage',
+  //       meta: {
+  //         title: 'router.examplePage'
+  //       }
+  //     },
+  //     {
+  //       path: 'example-add',
+  //       component: () => import('@/views/Example/Page/ExampleAdd.vue'),
+  //       name: 'ExampleAdd',
+  //       meta: {
+  //         title: 'router.exampleAdd',
+  //         noTagsView: true,
+  //         noCache: true,
+  //         hidden: true,
+  //         canTo: true,
+  //         activeMenu: '/example/example-page'
+  //       }
+  //     },
+  //     {
+  //       path: 'example-edit',
+  //       component: () => import('@/views/Example/Page/ExampleEdit.vue'),
+  //       name: 'ExampleEdit',
+  //       meta: {
+  //         title: 'router.exampleEdit',
+  //         noTagsView: true,
+  //         noCache: true,
+  //         hidden: true,
+  //         canTo: true,
+  //         activeMenu: '/example/example-page'
+  //       }
+  //     },
+  //     {
+  //       path: 'example-detail',
+  //       component: () => import('@/views/Example/Page/ExampleDetail.vue'),
+  //       name: 'ExampleDetail',
+  //       meta: {
+  //         title: 'router.exampleDetail',
+  //         noTagsView: true,
+  //         noCache: true,
+  //         hidden: true,
+  //         canTo: true,
+  //         activeMenu: '/example/example-page'
+  //       }
+  //     }
+  //   ]
+  // }
 ]
 
 const router = createRouter({
@@ -170,5 +170,8 @@ export const resetRouter = () => {
   })
 }
 
+export const setupRouter = app => {
+  app.use(router)
+}
 
 export default router

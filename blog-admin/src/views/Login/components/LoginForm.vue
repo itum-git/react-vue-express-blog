@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { reactive, ref, unref, watch } from 'vue'
 import { Form } from '@/components/Form'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
@@ -43,6 +43,7 @@ const schema = reactive([
       span: 24
     },
     componentProps: {
+      type: 'text',
       placeholder: 'login.usernamePlaceholder'
     }
   },
@@ -58,6 +59,7 @@ const schema = reactive([
       style: {
         width: '100%'
       },
+      type: 'password',
       placeholder: 'login.passwordPlaceholder'
     }
   },
@@ -99,7 +101,7 @@ const loading = ref(false)
 
 const iconColor = '#999'
 
-const redirect = ref<string>('')
+const redirect = ref('')
 
 watch(
   () => currentRoute.value,
@@ -134,6 +136,7 @@ const signIn = async () => {
               addRoute(route) // 动态添加可访问路由表
             })
             permissionStore.setIsAddRouters(true)
+            console.log(redirect)
             push({ path: redirect.value || permissionStore.addRouters[0].path })
           }
         }

@@ -71,7 +71,7 @@ export default defineComponent({
 
 .@{prefix-cls} {
   background-color: var(--app-content-bg-color);
-  :deep(.@{elNamespace}-scrollbar__view) {
+  :deep(.el-scrollbar__view) {
     height: 100% !important;
   }
 }

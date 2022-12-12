@@ -1,7 +1,7 @@
 <template>
   <div></div>
 </template>
-<script setup lang="js">
+<script setup>
 import { unref } from 'vue'
 import { useRouter } from 'vue-router'
 

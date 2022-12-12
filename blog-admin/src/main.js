@@ -1,14 +1,43 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { setupProdMockServer } from '../mock/_createProductionServer'
+
+// 引入windi css
+import '@/plugins/windi.css'
+
+// 导入全局的svg图标
+import '@/plugins/svgIcon'
+
 // 引入状态管理
-import store from './store'
+import { setupStore } from './store'
 // 路由
-import router from './router'
+import { setupRouter } from './router'
 
-const app = createApp(App)
+// 引入全局样式
+import '@/styles/index.less'
 
-app.use(store)
+// 全局组件
+import { setupGlobCom } from '@/components'
 
-app.use(router)
+import { createApp } from 'vue'
 
-app.mount('#app')
+import App from './App.vue'
+
+import './permission'
+
+// 创建实例
+const setupAll = async () => {
+    const app = createApp(App)
+
+    setupProdMockServer()
+
+    setupStore(app)
+
+    setupGlobCom(app)
+
+    // setupElementPlus(app)
+
+    setupRouter(app)
+
+    app.mount('#app')
+}
+
+setupAll()

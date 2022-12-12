@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { Error } from '@/components/Error'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'

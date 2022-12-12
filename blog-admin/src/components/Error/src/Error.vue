@@ -1,9 +1,12 @@
-<script setup lang="js">
+<script setup>
 import pageError from '@/assets/svgs/404.svg'
 import networkError from '@/assets/svgs/500.svg'
 import noPermission from '@/assets/svgs/403.svg'
 import { propTypes } from '@/utils/propTypes'
 import { ElButton } from 'element-plus'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 
 const errorMap = {

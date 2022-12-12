@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { reactive, computed, watch, onMounted, unref, toRef, PropType } from 'vue'
 import { isNumber } from '@/utils/is'
 import { propTypes } from '@/utils/propTypes'

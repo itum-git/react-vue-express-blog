@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { computed, unref, ref, watch, nextTick } from 'vue'
 import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'

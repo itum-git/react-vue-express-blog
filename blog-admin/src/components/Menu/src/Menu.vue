@@ -121,7 +121,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-menu';
+@prefix-cls: ~'@{namespace}--menu';
 
 .is-active--after {
   position: absolute;

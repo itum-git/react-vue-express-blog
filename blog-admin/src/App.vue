@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ConfigGlobal } from '@/components/ConfigGlobal'

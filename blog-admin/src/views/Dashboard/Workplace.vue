@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { useTimeAgo } from '@/hooks/web/useTimeAgo'
 import { ElRow, ElCol, ElSkeleton, ElCard, ElDivider, ElLink } from 'element-plus'
 import { ref, reactive } from 'vue'

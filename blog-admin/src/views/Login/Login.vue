@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { LoginForm, RegisterForm } from './components'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { useI18n } from '@/hooks/web/useI18n'

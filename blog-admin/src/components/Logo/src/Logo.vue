@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { ref, watch, computed, onMounted, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'

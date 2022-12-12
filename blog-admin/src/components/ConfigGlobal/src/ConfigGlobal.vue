@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { provide, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { ElConfigProvider } from 'element-plus'

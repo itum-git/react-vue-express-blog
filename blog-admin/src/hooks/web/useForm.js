@@ -1,5 +1,4 @@
 import { ref, unref, nextTick } from 'vue'
-import { FormSchema, FormSetPropsType } from '@/types/form'
 
 export const useForm = (props) => {
   // From实例

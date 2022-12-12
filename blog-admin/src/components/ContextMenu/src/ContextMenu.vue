@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { ref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'

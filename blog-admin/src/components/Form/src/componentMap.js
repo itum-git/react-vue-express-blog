@@ -19,7 +19,6 @@ import {
 } from 'element-plus'
 import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
-import { ComponentName } from '@/types/components'
 
 const componentMap = {
   Radio: ElRadioGroup,
