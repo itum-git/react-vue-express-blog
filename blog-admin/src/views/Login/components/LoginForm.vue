@@ -136,7 +136,6 @@ const signIn = async () => {
               addRoute(route) // 动态添加可访问路由表
             })
             permissionStore.setIsAddRouters(true)
-            console.log(redirect)
             push({ path: redirect.value || permissionStore.addRouters[0].path })
           }
         }
@@ -159,7 +158,6 @@ const getRole = async () => {
   const res =
     formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
   if (res) {
-    const { wsCache } = useCache()
     const routers = res.data || []
     wsCache.set('roleRouters', routers)
 
@@ -170,6 +168,7 @@ const getRole = async () => {
     permissionStore.getAddRouters.forEach((route) => {
       addRoute(route) // 动态添加可访问路由表
     })
+    console.log('signIn', redirect)
     permissionStore.setIsAddRouters(true)
     push({ path: redirect.value || permissionStore.addRouters[0].path })
   }

@@ -5,7 +5,7 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/dashboard/analysis',
     name: 'Root',
     meta: {
       hidden: true
@@ -63,7 +63,7 @@ export const asyncRouterMap = [
     },
     children: [
       {
-        path: '/analysis',
+        path: 'analysis',
         component: () => import('@/views/Dashboard/Analysis.vue'),
         name: 'Analysis',
         meta: {

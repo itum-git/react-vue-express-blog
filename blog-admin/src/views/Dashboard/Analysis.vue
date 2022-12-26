@@ -10,6 +10,9 @@ import {
   getMonthlySalesApi
 } from '@/api/dashboard/analysis'
 import { set } from 'lodash-es'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 const loading = ref(true)
 

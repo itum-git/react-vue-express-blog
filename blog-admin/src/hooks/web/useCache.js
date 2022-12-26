@@ -4,12 +4,23 @@
 
 import WebStorageCache from 'web-storage-cache'
 
-export const useCache = (type) => {
+let wsCaches = {}
+
+const createCache = (type) => {
   const wsCache = new WebStorageCache({
     storage: type
   })
 
+  return wsCache
+}
+
+export const useCache = (type = 'sessionStorage') => {
+
+  if (!wsCaches[type]) {
+    wsCaches[type] = createCache(type)
+  }
+
   return {
-    wsCache
+    wsCache: wsCaches[type]
   }
 }

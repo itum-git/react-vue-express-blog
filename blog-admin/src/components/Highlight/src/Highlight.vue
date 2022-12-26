@@ -1,5 +1,5 @@
 <script lang="jsx">
-import { defineComponent, PropType, computed, h, unref } from 'vue'
+import { defineComponent, computed, h, unref } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({

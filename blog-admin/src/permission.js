@@ -1,5 +1,5 @@
 import router from './router'
-import { useAppStoreWithOut } from '@/store/modules/app'
+import { useAppStore } from '@/store/modules/app'
 import { useCache } from '@/hooks/web/useCache'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
@@ -10,7 +10,7 @@ import { getDictApi } from '@/api/common'
 
 const permissionStore = usePermissionStoreWithOut()
 
-const appStore = useAppStoreWithOut()
+const appStore = useAppStore()
 
 const dictStore = useDictStoreWithOut()
 
@@ -25,7 +25,6 @@ const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
-  console.log('permission.js', wsCache.get(appStore.getUserInfo))
   if (wsCache.get(appStore.getUserInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })

@@ -70,7 +70,7 @@ export const useRenderLayout = () => {
           style="transition: all var(--transition-time-02);"
         >
           <ElScrollbar
-            v-loading={pageLoading.value}
+            loading={pageLoading.value}
             class={[
               `${prefixCls}-content-scrollbar`,
               {
@@ -130,7 +130,7 @@ export const useRenderLayout = () => {
             style="transition: all var(--transition-time-02);"
           >
             <ElScrollbar
-              v-loading={pageLoading.value}
+              loading={pageLoading.value}
               class={[
                 `${prefixCls}-content-scrollbar`,
                 {
@@ -173,7 +173,7 @@ export const useRenderLayout = () => {
         </div>
         <div class={[`${prefixCls}-content`, 'h-full w-full']}>
           <ElScrollbar
-            v-loading={pageLoading.value}
+            loading={pageLoading.value}
             class={[
               `${prefixCls}-content-scrollbar`,
               {
@@ -228,7 +228,7 @@ export const useRenderLayout = () => {
             style="transition: all var(--transition-time-02);"
           >
             <ElScrollbar
-              v-loading={pageLoading.value}
+              loading={pageLoading.value}
               class={[
                 `${prefixCls}-content-scrollbar`,
                 {
