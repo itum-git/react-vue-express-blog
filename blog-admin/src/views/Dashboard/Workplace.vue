@@ -16,6 +16,7 @@ import {
   getRadarApi
 } from '@/api/dashboard/workplace'
 import { set } from 'lodash-es'
+import { useI18n } from '@/hooks/web/useI18n'
 
 const loading = ref(true)
 

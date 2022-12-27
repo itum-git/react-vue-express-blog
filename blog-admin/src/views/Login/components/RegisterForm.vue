@@ -4,6 +4,9 @@ import { reactive, ref, unref } from 'vue'
 import { useForm } from '@/hooks/web/useForm'
 import { ElButton, ElInput } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 const emit = defineEmits(['to-login'])
 
@@ -20,19 +23,19 @@ const schema = reactive([
   },
   {
     field: 'username',
-    label: 'login.username',
+    label: t('login.username'),
     value: '',
     component: 'Input',
     colProps: {
       span: 24
     },
     componentProps: {
-      placeholder: 'login.usernamePlaceholder'
+      placeholder: t('login.usernamePlaceholder')
     }
   },
   {
     field: 'password',
-    label: 'login.password',
+    label: t('login.password'),
     value: '',
     component: 'InputPassword',
     colProps: {
@@ -43,12 +46,12 @@ const schema = reactive([
         width: '100%'
       },
       strength: true,
-      placeholder: 'login.passwordPlaceholder'
+      placeholder: t('login.passwordPlaceholder')
     }
   },
   {
     field: 'check_password',
-    label: 'login.checkPassword',
+    label: t('login.checkPassword'),
     value: '',
     component: 'InputPassword',
     colProps: {
@@ -59,12 +62,12 @@ const schema = reactive([
         width: '100%'
       },
       strength: true,
-      placeholder: 'login.passwordPlaceholder'
+      placeholder: t('login.passwordPlaceholder')
     }
   },
   {
     field: 'code',
-    label: 'login.code',
+    label: t('login.code'),
     colProps: {
       span: 24
     }
@@ -116,24 +119,24 @@ const loginRegister = async () => {
     @register="register"
   >
     <template #title>
-      <h2 class="text-2xl font-bold text-center w-[100%]">{{ 'login.register' }}</h2>
+      <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.register') }}</h2>
     </template>
 
     <template #code="form">
       <div class="w-[100%] flex">
-        <ElInput v-model="form['code']" :placeholder="'login.codePlaceholder'" />
+        <ElInput v-model="form['code']" :placeholder="t('login.codePlaceholder')" />
       </div>
     </template>
 
     <template #register>
       <div class="w-[100%]">
         <ElButton type="primary" class="w-[100%]" :loading="loading" @click="loginRegister">
-          {{ 'login.register' }}
+          {{ t('login.register') }}
         </ElButton>
       </div>
       <div class="w-[100%] mt-15px">
         <ElButton class="w-[100%]" @click="toLogin">
-          {{ 'login.hasUser' }}
+          {{ t('login.hasUser') }}
         </ElButton>
       </div>
     </template>

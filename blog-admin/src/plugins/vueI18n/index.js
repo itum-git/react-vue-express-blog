@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
-import { setHtmlPageLang } from './helper'
+import { setHtmlPageLang, createDefaultI18n } from './helper'
 
-export let i18n
+export let i18n = createDefaultI18n()
 
 const createI18nOptions = async () => {
   const localeStore = useLocaleStoreWithOut()
@@ -35,6 +35,7 @@ const createI18nOptions = async () => {
 
 export const setupI18n = async app => {
   const options = await createI18nOptions()
+  console.log(options)
   i18n = createI18n(options)
   app.use(i18n)
 }

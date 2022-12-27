@@ -1,5 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout/Layout.vue'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 export const constantRouterMap = [
   {
@@ -34,7 +37,7 @@ export const constantRouterMap = [
     name: 'Login',
     meta: {
       hidden: true,
-      title: 'router.login',
+      title: t('router.login'),
       noTagsView: true
     }
   },
@@ -57,7 +60,7 @@ export const asyncRouterMap = [
     redirect: '/dashboard/analysis',
     name: 'Dashboard',
     meta: {
-      title: 'router.dashboard',
+      title: t('router.dashboard'),
       icon: 'ant-design:dashboard-filled',
       alwaysShow: true
     },
@@ -67,7 +70,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Dashboard/Analysis.vue'),
         name: 'Analysis',
         meta: {
-          title: 'router.analysis',
+          title: t('router.analysis'),
           noCache: true,
           affix: true
         }
@@ -77,7 +80,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/Dashboard/Workplace.vue'),
         name: 'Workplace',
         meta: {
-          title: 'router.workplace',
+          title: t('router.workplace'),
           noCache: true
         }
       }

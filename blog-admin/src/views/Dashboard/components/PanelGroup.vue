@@ -4,6 +4,9 @@ import { CountTo } from '@/components/CountTo'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ref, reactive } from 'vue'
 import { getCountApi } from '@/api/dashboard/analysis'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 const { getPrefixCls } = useDesign()
 
@@ -46,7 +49,7 @@ getCount()
               </div>
               <div class="flex flex-col justify-between">
                 <div :class="`${prefixCls}__item--text text-16px text-gray-500 text-right`">{{
-                  'analysis.newUser'
+                  t('analysis.newUser')
                 }}</div>
                 <CountTo
                   class="text-20px font-700 text-right"
@@ -75,7 +78,7 @@ getCount()
               </div>
               <div class="flex flex-col justify-between">
                 <div :class="`${prefixCls}__item--text text-16px text-gray-500 text-right`">{{
-                  'analysis.unreadInformation'
+                  t('analysis.unreadInformation')
                 }}</div>
                 <CountTo
                   class="text-20px font-700 text-right"
@@ -104,7 +107,7 @@ getCount()
               </div>
               <div class="flex flex-col justify-between">
                 <div :class="`${prefixCls}__item--text text-16px text-gray-500 text-right`">{{
-                  'analysis.transactionAmount'
+                  t('analysis.transactionAmount')
                 }}</div>
                 <CountTo
                   class="text-20px font-700 text-right"
@@ -133,7 +136,7 @@ getCount()
               </div>
               <div class="flex flex-col justify-between">
                 <div :class="`${prefixCls}__item--text text-16px text-gray-500 text-right`">{{
-                  'analysis.totalShopping'
+                  t('analysis.totalShopping')
                 }}</div>
                 <CountTo
                   class="text-20px font-700 text-right"

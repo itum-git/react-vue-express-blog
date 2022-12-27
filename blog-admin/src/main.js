@@ -6,6 +6,9 @@ import '@/plugins/windi.css'
 // 导入全局的svg图标
 import '@/plugins/svgIcon'
 
+// 初始化多语言
+import { setupI18n } from '@/plugins/vueI18n'
+
 // 引入状态管理
 import { setupStore } from './store'
 // 路由
@@ -26,6 +29,8 @@ import './permission'
 // 创建实例
 const setupAll = async () => {
     const app = createApp(App)
+
+    await setupI18n(app)
 
     setupProdMockServer()
 

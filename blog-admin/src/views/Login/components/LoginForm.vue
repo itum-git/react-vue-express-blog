@@ -9,6 +9,9 @@ import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import { useValidator } from '@/hooks/web/useValidator'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 const { required } = useValidator()
 
@@ -36,7 +39,7 @@ const schema = reactive([
   },
   {
     field: 'username',
-    label: 'login.username',
+    label: t('login.username'),
     value: 'admin',
     component: 'Input',
     colProps: {
@@ -44,12 +47,12 @@ const schema = reactive([
     },
     componentProps: {
       type: 'text',
-      placeholder: 'login.usernamePlaceholder'
+      placeholder: t('login.usernamePlaceholder')
     }
   },
   {
     field: 'password',
-    label: 'login.password',
+    label: t('login.password'),
     value: 'admin',
     component: 'InputPassword',
     colProps: {
@@ -60,7 +63,7 @@ const schema = reactive([
         width: '100%'
       },
       type: 'password',
-      placeholder: 'login.passwordPlaceholder'
+      placeholder: t('login.passwordPlaceholder')
     }
   },
   {
@@ -78,7 +81,7 @@ const schema = reactive([
   {
     field: 'other',
     component: 'Divider',
-    label: 'login.otherLogin',
+    label: t('login.otherLogin'),
     componentProps: {
       contentPosition: 'center'
     }
@@ -191,25 +194,25 @@ const toRegister = () => {
     @register="register"
   >
     <template #title>
-      <h2 class="text-2xl font-bold text-center w-[100%]">{{ 'login.login' }}</h2>
+      <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.login') }}</h2>
     </template>
 
     <template #tool>
       <div class="flex justify-between items-center w-[100%]">
-        <ElCheckbox v-model="remember" :label="'login.remember'" size="small" />
-        <ElLink type="primary" :underline="false">{{ 'login.forgetPassword' }}</ElLink>
+        <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />
+        <ElLink type="primary" :underline="false">{{ t('login.forgetPassword') }}</ElLink>
       </div>
     </template>
 
     <template #login>
       <div class="w-[100%]">
         <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
-          {{ 'login.login' }}
+          {{ t('login.login') }}
         </ElButton>
       </div>
       <div class="w-[100%] mt-15px">
         <ElButton class="w-[100%]" @click="toRegister">
-          {{ 'login.register' }}
+          {{ t('login.register') }}
         </ElButton>
       </div>
     </template>
