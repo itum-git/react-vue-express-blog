@@ -29,7 +29,12 @@ const config /* : {
   /**
    * 接口成功返回状态码
    */
-  result_code: '0000',
+  success_code: 0,
+
+  /**
+   * 无需过滤的状态吗
+   */
+  white_list: [],
 
   /**
    * 接口请求超时时间

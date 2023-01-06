@@ -3,13 +3,13 @@ import { reactive, ref, unref, watch } from 'vue'
 import { Form } from '@/components/Form'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
-import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import { useCache } from '@/hooks/web/useCache'
-import { useAppStore } from '@/store/modules/app'
+import { loginApi, getUserInfoApi } from '@/api/user'
+import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
+import { generateRoutes } from '@/router'
 
 const { t } = useI18n()
 
@@ -17,13 +17,10 @@ const { required } = useValidator()
 
 const emit = defineEmits(['to-register'])
 
-const appStore = useAppStore()
+const { currentRoute } = useRouter()
 
+const userStore = useUserStore()
 const permissionStore = usePermissionStore()
-
-const { currentRoute, addRoute, push } = useRouter()
-
-const { wsCache } = useCache()
 
 const rules = {
   username: [required()],
@@ -129,52 +126,16 @@ const signIn = async () => {
         const res = await loginApi(formData)
 
         if (res) {
-          wsCache.set(appStore.getUserInfo, res.data)
-          // 是否使用动态路由
-          if (appStore.getDynamicRouter) {
-            getRole()
-          } else {
-            await permissionStore.generateRoutes('none').catch(() => {})
-            permissionStore.getAddRouters.forEach((route) => {
-              addRoute(route) // 动态添加可访问路由表
-            })
-            permissionStore.setIsAddRouters(true)
-            push({ path: redirect.value || permissionStore.addRouters[0].path })
-          }
+          const userInfo = await getUserInfoApi()
+
+          userStore.setUserInfo(userInfo)
+          generateRoutes(userInfo.permission)
         }
       } finally {
         loading.value = false
       }
     }
   })
-}
-
-// 获取角色信息
-const getRole = async () => {
-  const { getFormData } = methods
-  const formData = await getFormData()
-  const params = {
-    roleName: formData.username
-  }
-  // admin - 模拟后端过滤菜单
-  // test - 模拟前端过滤菜单
-  const res =
-    formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
-  if (res) {
-    const routers = res.data || []
-    wsCache.set('roleRouters', routers)
-
-    formData.username === 'admin'
-      ? await permissionStore.generateRoutes('admin', routers).catch(() => {})
-      : await permissionStore.generateRoutes('test', routers).catch(() => {})
-
-    permissionStore.getAddRouters.forEach((route) => {
-      addRoute(route) // 动态添加可访问路由表
-    })
-    console.log('signIn', redirect)
-    permissionStore.setIsAddRouters(true)
-    push({ path: redirect.value || permissionStore.addRouters[0].path })
-  }
 }
 
 // 去注册页面

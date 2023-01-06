@@ -1,6 +1,6 @@
 import { config } from '@/config/axios/config'
 
-const { result_code } = config
+const { success_code } = config
 
 const timeout = 1000
 
@@ -44,7 +44,7 @@ export default [
       )
 
       return {
-        code: result_code,
+        code: success_code,
         data: {
           total: mockList.length,
           list: pageList
@@ -64,7 +64,7 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            code: result_code,
+            code: success_code,
             data: user
           }
         }
@@ -84,7 +84,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: success_code,
         data: null
       }
     }
