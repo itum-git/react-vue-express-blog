@@ -1,20 +1,13 @@
-import router from './router'
+import router, { generateRoutes } from './router'
 import { useAppStore } from '@/store/modules/app'
-import { useCache } from '@/hooks/web/useCache'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
-import { usePermissionStoreWithOut } from '@/store/modules/permission'
-import { useDictStoreWithOut } from '@/store/modules/dict'
+import { useUserStore } from './store/modules/user'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
-import { getDictApi } from '@/api/common'
 
-const permissionStore = usePermissionStoreWithOut()
+const userStore = useUserStore()
 
 const appStore = useAppStore()
-
-const dictStore = useDictStoreWithOut()
-
-const { wsCache } = useCache()
 
 const { start, done } = useNProgress()
 
@@ -25,44 +18,29 @@ const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
-  if (wsCache.get(appStore.getUserInfo)) {
+  const userInfo = userStore.getUserInfo
+  if (userInfo !== null) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (permissionStore.getIsAddRouters) {
+      if (userStore.isAddRoutes) {
         next()
         return
       }
 
-      if (!dictStore.getIsSetDict) {
-        // 获取所有字典
-        const res = await getDictApi()
-        if (res) {
-          dictStore.setDictObj(res.data)
-          dictStore.setIsSetDict(true)
-        }
-      }
-
-      // 开发者可根据实际情况进行修改
-      const roleRouters = wsCache.get('roleRouters') || []
-      const userInfo = wsCache.get(appStore.getUserInfo)
-
       // 是否使用动态路由
       if (appStore.getDynamicRouter) {
-        userInfo.role === 'admin'
-          ? await permissionStore.generateRoutes('admin', roleRouters)
-          : await permissionStore.generateRoutes('test', roleRouters)
+        generateRoutes(userInfo.permissions)
       } else {
-        await permissionStore.generateRoutes('none')
+        generateRoutes()
       }
 
-      permissionStore.getAddRouters.forEach((route) => {
-        router.addRoute(route) // 动态添加可访问路由表
-      })
       const redirectPath = from.query.redirect || to.path
       const redirect = decodeURIComponent(redirectPath)
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
-      permissionStore.setIsAddRouters(true)
+      userStore.setIsAddRoutes(true)
+
+      console.log('beforeEach', nextData)
       next(nextData)
     }
   } else {

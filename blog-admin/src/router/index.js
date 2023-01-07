@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, add } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import constantRouterMap from './routes'
 import { isString, isArray } from '@/utils/is'
 
@@ -8,6 +8,8 @@ const router = createRouter({
   routes: constantRouterMap,
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
+
+const default_config = ['dashboard']
 
 export const resetRouter = () => {
   const resetWhiteNameList = ['Redirect', 'Login', 'NoFound', 'Root']
@@ -20,17 +22,19 @@ export const resetRouter = () => {
 }
 
 export const generateRoutes = (config) => {
-  const modules = import.meta.glob("./module/*.js", { eager: true })
+  const modules = import.meta.glob("./modules/*.js", { import: 'default', eager: true })
 
   function setRoutes(con) {
     const routes = []
     con.forEach(item => {
       if (isString(item)) {
-        routes.push(modules[item])
+        const moduleKey = `./modules/${item}.js`
+        routes.push(modules[moduleKey])
       } else if (isArray(item)) {
         routes = routes.concat(setRoutes(item))
       }
     })
+    return routes
   }
 
   const routes = setRoutes(config)

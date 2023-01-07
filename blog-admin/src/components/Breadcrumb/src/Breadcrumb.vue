@@ -2,7 +2,6 @@
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import { ref, watch, computed, unref, defineComponent, TransitionGroup } from 'vue'
 import { useRouter } from 'vue-router'
-import { usePermissionStore } from '@/store/modules/permission'
 import { filterBreadcrumb } from './helper'
 import { filter, treeToList } from '@/utils/tree'
 import { Icon } from '@/components/Icon'
@@ -21,14 +20,12 @@ const breadcrumbIcon = computed(() => appStore.getBreadcrumbIcon)
 export default defineComponent({
   name: 'Breadcrumb',
   setup() {
-    const { currentRoute } = useRouter()
+    const { currentRoute, getRoutes } = useRouter()
 
     const levelList = ref([])
 
-    const permissionStore = usePermissionStore()
-
     const menuRouters = computed(() => {
-      const routers = permissionStore.getRouters
+      const routers = getRoutes()
       return filterBreadcrumb(routers)
     })
 

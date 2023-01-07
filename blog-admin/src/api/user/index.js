@@ -9,5 +9,5 @@ export const loginOutApi = () => {
 }
 
 export const getUserInfoApi = () => {
-  return request({ url: '/user/info' })
+  return request.get({ url: '/user/info' })
 }

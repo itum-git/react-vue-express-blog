@@ -3,7 +3,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
 
-export default router = {
+const router = {
   path: '/dashboard',
   component: Layout,
   redirect: '/dashboard/analysis',
@@ -35,3 +35,5 @@ export default router = {
     }
   ]
 }
+
+export default router

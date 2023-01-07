@@ -5,11 +5,9 @@ import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getUserInfoApi } from '@/api/user'
 import { useUserStore } from '@/store/modules/user'
-import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
-import { generateRoutes } from '@/router'
 
 const { t } = useI18n()
 
@@ -17,10 +15,9 @@ const { required } = useValidator()
 
 const emit = defineEmits(['to-register'])
 
-const { currentRoute } = useRouter()
+const { currentRoute, getRoutes, push } = useRouter()
 
 const userStore = useUserStore()
-const permissionStore = usePermissionStore()
 
 const rules = {
   username: [required()],
@@ -126,10 +123,20 @@ const signIn = async () => {
         const res = await loginApi(formData)
 
         if (res) {
-          const userInfo = await getUserInfoApi()
 
-          userStore.setUserInfo(userInfo)
-          generateRoutes(userInfo.permission)
+          userStore.setToken(res.data.token)
+
+          const $res = await getUserInfoApi()
+
+          const userInfo = $res.data?.userInfo
+
+          userInfo && userStore.setUserInfo(userInfo)
+
+          const routes = getRoutes()
+
+          push({ path: redirect.value || routes[0].path })
+          // 移至 router.beforeEach 当中执行
+          // generateRoutes(userInfo.permission)
         }
       } finally {
         loading.value = false

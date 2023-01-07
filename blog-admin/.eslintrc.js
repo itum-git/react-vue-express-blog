@@ -26,7 +26,7 @@ module.exports = defineConfig({
     'vue/custom-event-name-casing': 'off',
     'no-use-before-define': 'off',
     'no-unused-vars': 'off',
-    'space-before-function-paren': 'off',
+    // 'space-before-function-paren': 'off',
 
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',

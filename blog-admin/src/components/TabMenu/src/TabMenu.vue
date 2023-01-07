@@ -1,5 +1,4 @@
 <script lang="jsx">
-import { usePermissionStore } from '@/store/modules/permission'
 import { useAppStore } from '@/store/modules/app'
 import { computed, unref, defineComponent, watch, ref, onMounted } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -20,7 +19,7 @@ const prefixCls = getPrefixCls('tab-menu')
 export default defineComponent({
   name: 'TabMenu',
   setup() {
-    const { push, currentRoute } = useRouter()
+    const { push, currentRoute, getRoutes } = useRouter()
 
     const { t } = useI18n()
 
@@ -30,9 +29,7 @@ export default defineComponent({
 
     const fixedMenu = computed(() => appStore.getFixedMenu)
 
-    const permissionStore = usePermissionStore()
-
-    const routers = computed(() => permissionStore.getRouters)
+    const routers = computed(() => getRoutes())
 
     const tabRouters = computed(() => unref(routers).filter((v) => !v?.meta?.hidden))
 

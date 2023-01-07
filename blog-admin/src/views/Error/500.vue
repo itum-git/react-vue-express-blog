@@ -1,14 +1,12 @@
 <script setup>
 import { Error } from '@/components/Error'
-import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 
-const { push } = useRouter()
-
-const permissionStore = usePermissionStore()
+const { push, getRoutes } = useRouter()
 
 const errorClick = () => {
-  push(permissionStore.addRouters[0]?.path)
+  const routes = getRoutes()
+  push(routes[0]?.path)
 }
 </script>
 

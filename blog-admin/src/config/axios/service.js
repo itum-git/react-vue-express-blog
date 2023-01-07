@@ -2,10 +2,10 @@ import axios from 'axios'
 import qs from 'qs'
 import { config } from './config'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStoreWithOut } from '@/store/modules/user'
 import { useAuth } from '@/hooks/web/useAuth'
 
-const userStore = useUserStore()
+const userStore = useUserStoreWithOut()
 
 const auth = useAuth()
 
@@ -25,9 +25,11 @@ service.interceptors.request.use(
     // 规范特殊请求
     formatRequestData(config)
 
-    if (userStore.token) {
-      config.headers['Authorization'] = auth.getToken()
+    if (userStore.getToken) {
+      config.headers['Authorization'] = userStore.getToken
     }
+
+    console.log(config)
     
     return config
   },
