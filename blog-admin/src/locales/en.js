@@ -104,13 +104,10 @@ export default {
   router: {
     login: 'Login',
     level: 'Multi level menu',
-    menu: 'Menu',
-    menu1: 'Menu1',
-    menu11: 'Menu1-1',
-    menu111: 'Menu1-1-1',
-    menu12: 'Menu1-2',
-    menu2: 'Menu2',
     dashboard: 'Dashboard',
+    blog: 'Blog',
+    articles: 'Articles',
+    articleTypes: 'articleTypes',
     analysis: 'Analysis',
     workplace: 'Workplace',
     guide: 'Guide',
@@ -208,7 +205,7 @@ export default {
     pushCode: 'Archer push code to Github',
     follow: 'Follow'
   },
-  formDemo: {
+  form: {
     input: 'Input',
     inputNumber: 'InputNumber',
     default: 'Default',
@@ -266,13 +263,13 @@ export default {
     formValidation: 'Form validation',
     verifyReset: 'Verify reset'
   },
-  guideDemo: {
+  guide: {
     guide: 'Guide',
     start: 'Start',
     message:
       'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on intro js'
   },
-  iconDemo: {
+  icon: {
     icon: 'Icon',
     localIcon: 'Local Icon',
     iconify: 'Iconify component',
@@ -281,12 +278,12 @@ export default {
       'Iconify component basically contains all icons. You can query any icon you want. And packaging will only package the icons used.',
     accessAddress: 'Access address'
   },
-  echartDemo: {
+  echart: {
     echart: 'Echart',
     echartDes:
       'Based on the secondary packaging components of eckarts, the width is adaptive. The corresponding chart can be displayed by passing in the options and height attributes.'
   },
-  countToDemo: {
+  countTo: {
     countTo: 'CountTo',
     countToDes:
       'The transformation is based on vue-count-to and supports all vue-count-to parameters.',
@@ -300,13 +297,13 @@ export default {
     pause: 'Pause',
     resume: 'Resume'
   },
-  watermarkDemo: {
+  watermark: {
     watermark: 'Watermark',
     createdWatermark: 'Created watermark',
     clearWatermark: 'Clear watermark',
     resetWatermark: 'Reset watermark'
   },
-  qrcodeDemo: {
+  qrcode: {
     qrcode: 'Qrcode',
     qrcodeDes: 'Secondary packaging based on qrcode',
     basicUsage: 'Basic usage',
@@ -319,21 +316,21 @@ export default {
     logoStyle: 'Logo style',
     size: 'size config'
   },
-  highlightDemo: {
+  highlight: {
     highlight: 'Highlight',
     message: 'The best time to plant a tree is ten years ago, followed by now.',
     keys1: 'ten years ago',
     keys2: 'now'
   },
-  infotipDemo: {
+  infotip: {
     infotip: 'Infotip',
     infotipDes: 'Secondary packaging of components based on Highlight',
     title: 'matters needing attention'
   },
-  levelDemo: {
+  level: {
     menu: 'Multi level menu cache'
   },
-  searchDemo: {
+  search: {
     search: 'Search',
     searchDes:
       'Based on the secondary encapsulation of form components, the functions of query and reset are realized',
@@ -350,18 +347,19 @@ export default {
     right: 'right',
     dynamicOptions: 'Dynamic options'
   },
-  stickyDemo: {
+  sticky: {
     sticky: 'Sticky'
   },
-  tableDemo: {
+  table: {
     table: 'Table',
     tableDes: 'Secondary packaging of Table components based on ElementPlus',
     index: 'Index',
     title: 'Title',
     author: 'Author',
-    displayTime: 'Display time',
+    updateTime: 'Update time',
+    createTime: 'Create time',
     importance: 'Importance',
-    pageviews: 'Pageviews',
+    views: 'Pageviews',
     action: 'Action',
     important: 'Important',
     good: 'Good',
@@ -385,7 +383,7 @@ export default {
     richText: 'Rich text',
     richTextDes: 'Secondary packaging based on wangeditor'
   },
-  dialogDemo: {
+  dialog: {
     dialog: 'Dialog',
     dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
     open: 'Open',
@@ -393,12 +391,12 @@ export default {
     combineWithForm: 'Combine with form',
     submit: 'Submit'
   },
-  imageViewerDemo: {
+  imageViewer: {
     open: 'Open',
     imageViewer: 'Image viewer',
     imageViewerDes: 'Secondary packaging of ImageViewer components based on ElementPlus'
   },
-  descriptionsDemo: {
+  descriptions: {
     descriptions: 'Descriptions',
     descriptionsDes: 'Secondary packaging of Descriptions components based on ElementPlus',
     username: 'Username',
@@ -408,21 +406,28 @@ export default {
     addr: 'Address',
     form: 'Combined with Form component'
   },
-  exampleDemo: {
+  articleType: {
+    name: 'Name',
+    desc: 'Description'
+  },
+  article: {
     title: 'Title',
     add: 'Add',
     del: 'Delete',
     edit: 'Edit',
     author: 'Author',
-    displayTime: 'Display time',
+    type: 'Type',
+    createTime: 'Create time',
+    updateTime: 'Update time',
     importance: 'Importance',
-    pageviews: 'Pageviews',
+    views: 'Article Views',
+    likes: 'Article Likes',
     important: 'Important',
     content: 'Content',
     save: 'Save',
     detail: 'Detail'
   },
-  userDemo: {
+  user: {
     title: 'User management',
     message:
       'Because it is simulated data, only two accounts with different permissions are provided, which can be modified and combined by developers according to the actual situation.',
@@ -435,7 +440,7 @@ export default {
     remarkMessage1: 'Back end control routing permission',
     remarkMessage2: 'Front end control routing permission'
   },
-  inputPasswordDemo: {
+  inputPassword: {
     title: 'InputPassword',
     inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
   }

@@ -3,16 +3,16 @@ const { uniqIdFromTime } = require('../../common/utils/uuid')
 
 exports.addNewArticle = async (req, res, next) => {
     try {
-        const { article_name, article_type, article_content } = req.body
-        if (!article_name|| !article_type || !article_content) {
-            res.$fail(3, 'article_name, article_content')
+        const { article_title, article_type, article_content } = req.body
+        if (!article_title|| !article_type || !article_content) {
+            res.$fail(3, 'article_title, article_content')
             return
         }
         const article_id = uniqIdFromTime()
         const params = {
             user_id: req.user.user_id,
             article_id,
-            article_name,
+            article_title,
             article_type,
             article_content
         }

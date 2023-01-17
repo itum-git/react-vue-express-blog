@@ -104,12 +104,9 @@ export default {
   router: {
     login: '登录',
     level: '多级菜单',
-    menu: '菜单',
-    menu1: '菜单1',
-    menu11: '菜单1-1',
-    menu111: '菜单1-1-1',
-    menu12: '菜单1-2',
-    menu2: '菜单2',
+    blog: '文章',
+    articles: '文章',
+    articleTypes: '文章类型',
     dashboard: '首页',
     analysis: '分析页',
     workplace: '工作台',
@@ -208,7 +205,7 @@ export default {
     pushCode: 'Archer 推送 代码到 Github',
     follow: '关注'
   },
-  formDemo: {
+  form: {
     input: '输入框',
     inputNumber: '数字输入框',
     default: '默认',
@@ -265,13 +262,13 @@ export default {
     formValidation: '表单验证',
     verifyReset: '验证重置'
   },
-  guideDemo: {
+  guide: {
     guide: '引导页',
     start: '开始',
     message:
       '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 intro.js'
   },
-  iconDemo: {
+  icon: {
     icon: '图标',
     localIcon: '本地图标',
     iconify: 'Iconify组件',
@@ -280,12 +277,12 @@ export default {
       'Iconify组件基本包含所有的图标，你可以查询到你想要的任何图标。并且打包只会打包所用到的图标。',
     accessAddress: '访问地址'
   },
-  echartDemo: {
+  echart: {
     echart: '图表',
     echartDes:
       '基于 echarts 二次封装组件，自适应宽度，只需传入 options 与 height 属性即可展示对应的图表。'
   },
-  countToDemo: {
+  countTo: {
     countTo: '数字动画',
     countToDes: '基于 vue-count-to 进行改造，支持所有 vue-count-to 参数。',
     suffix: '后缀',
@@ -298,13 +295,13 @@ export default {
     pause: '暂停',
     resume: '继续'
   },
-  watermarkDemo: {
+  watermark: {
     watermark: '水印',
     createdWatermark: '创建水印',
     clearWatermark: '清除水印',
     resetWatermark: '重置水印'
   },
-  qrcodeDemo: {
+  qrcode: {
     qrcode: '二维码',
     qrcodeDes: '基于 qrcode 二次封装',
     basicUsage: '基础用法',
@@ -317,21 +314,21 @@ export default {
     logoStyle: 'logo样式',
     size: '大小配置'
   },
-  highlightDemo: {
+  highlight: {
     highlight: '高亮',
     message: '种一棵树最好的时间是十年前，其次就是现在。',
     keys1: '十年前',
     keys2: '现在'
   },
-  infotipDemo: {
+  infotip: {
     infotip: '信息提示',
     infotipDes: '基于 Highlight 组件二次封装',
     title: '注意事项'
   },
-  levelDemo: {
+  level: {
     menu: '多级菜单缓存'
   },
-  searchDemo: {
+  search: {
     search: '查询',
     searchDes: '基于 Form 组件二次封装，实现查询、重置功能',
     operate: '操作',
@@ -347,18 +344,18 @@ export default {
     right: '右',
     dynamicOptions: '动态选项'
   },
-  stickyDemo: {
+  sticky: {
     sticky: '黏性'
   },
-  tableDemo: {
+  table: {
     table: '表格',
     tableDes: '基于 ElementPlus 的 Table 组件二次封装',
     index: '序号',
     title: '标题',
     author: '作者',
-    displayTime: '创建时间',
+    updateTime: '更新时间',
+    createTime: '创建时间',
     importance: '重要性',
-    pageviews: '阅读数',
     action: '操作',
     important: '重要',
     good: '良好',
@@ -382,7 +379,7 @@ export default {
     richText: '富文本',
     richTextDes: '基于 wangeditor 二次封装'
   },
-  dialogDemo: {
+  dialog: {
     dialog: '弹窗',
     dialogDes: '基于 ElementPlus 的 Dialog 组件二次封装',
     open: '打开',
@@ -390,12 +387,12 @@ export default {
     combineWithForm: '与表单结合',
     submit: '提交'
   },
-  imageViewerDemo: {
+  imageViewer: {
     open: '打开',
     imageViewer: '图片预览',
     imageViewerDes: '基于 ElementPlus 的 ImageViewer 组件二次封装'
   },
-  descriptionsDemo: {
+  descriptions: {
     descriptions: '描述',
     descriptionsDes: '基于 ElementPlus 的 Descriptions 组件二次封装',
     username: '用户名',
@@ -405,21 +402,27 @@ export default {
     addr: '地址',
     form: '与 Form 组件组合'
   },
-  exampleDemo: {
+  articleType: {
+    name: '名称',
+    desc: '简介'
+  },
+  article: {
     title: '标题',
     add: '新增',
     del: '删除',
     edit: '编辑',
     author: '作者',
-    displayTime: '创建时间',
+    type: '类型',
+    createTime: '创建时间',
     importance: '重要性',
-    pageviews: '阅读数',
+    views: '阅读数',
+    likes: '点赞数',
     important: '重要',
     content: '内容',
     save: '保存',
     detail: '详情'
   },
-  userDemo: {
+  user: {
     title: '用户管理',
     message: '由于是模拟数据，所以只提供了两种不同权限的帐号，开发者可根据实际情况自行改造结合。',
     index: '序号',
@@ -431,7 +434,7 @@ export default {
     remarkMessage1: '后端控制路由权限',
     remarkMessage2: '前端控制路由权限'
   },
-  inputPasswordDemo: {
+  inputPassword: {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
   }
